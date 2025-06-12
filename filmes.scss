@@ -1,0 +1,97 @@
+.abas-paises {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  .aba {
+    padding: 10px 22px;
+    background: #eee;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #333;
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+    &.ativa {
+      background-color: #50a142;
+      color: #fff;
+      box-shadow: 0 4px 10px rgba(80, 161, 66, 0.5);
+    }
+
+    &:hover:not(.ativa) {
+      background-color: #c0f0a8;
+      color: #3b6e1a;
+    }
+  }
+}
+
+.carrossel-filmes {
+  position: relative;
+  padding-bottom: 16px;
+
+  .grade-filmes {
+    display: flex;
+    gap: 18px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+    scrollbar-color: #50a142 #e0e0e0;
+
+    &::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: #e0e0e0;
+      border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #50a142;
+      border-radius: 10px;
+      border: 2px solid #e0e0e0;
+    }
+
+    .filme {
+      scroll-snap-align: start;
+      flex: 0 0 auto; // impede que os cards encolham e mantêm largura fixa (assumindo que filme.scss define width)
+      user-select: none; // impede seleção durante scroll
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: scale(1.07);
+        z-index: 10;
+      }
+    }
+  }
+}
+
+/* Responsivo para telas pequenas */
+@media (max-width: 600px) {
+  .abas-paises {
+    gap: 8px;
+
+    .aba {
+      padding: 8px 16px;
+      font-size: 0.9rem;
+    }
+  }
+
+  .carrossel-filmes {
+    .grade-filmes {
+      gap: 14px;
+
+      .filme {
+        width: 140px !important;
+        img {
+          height: 210px !important;
+        }
+      }
+    }
+  }
+}
